@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Birthday Letter · Anis & Haziquent</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.letter-outer{max-width:640px;margin:0 auto;}
+.letter-wrap{background:#fff;border:1px solid rgba(244,160,176,.25);border-radius:24px;padding:56px 52px;box-shadow:0 4px 32px rgba(232,96,122,.07);position:relative;overflow:hidden;opacity:0;transform:translateY(28px) scale(.98);transition:opacity .7s ease,transform .7s ease;}
+.letter-wrap.in{opacity:1;transform:translateY(0) scale(1);}
+.letter-wrap::before{content:'"';position:absolute;top:16px;left:28px;font-size:8rem;line-height:1;font-weight:700;color:rgba(244,160,176,.15);font-family:Georgia,serif;pointer-events:none;}
+.letter-to{font-size:.75rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--pink);margin-bottom:20px;}
+.letter-greeting{font-size:1.6rem;font-weight:700;letter-spacing:-.02em;color:var(--text);margin-bottom:28px;}
+.letter-body{font-size:1rem;line-height:1.9;color:var(--text-mid);font-weight:300;}
+.letter-body p+p{margin-top:20px;}
+.letter-sign{margin-top:40px;font-size:1.1rem;font-weight:600;color:var(--text);letter-spacing:-.01em;}
+.letter-sign .name{font-size:1.6rem;font-weight:700;letter-spacing:-.03em;color:var(--pink);display:block;margin-top:4px;}
+.stamp{position:absolute;bottom:28px;right:28px;font-size:2rem;opacity:.3;transform:rotate(12deg);}
+@media(max-width:600px){.letter-wrap{padding:36px 26px;}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="home.html">Anis & Haziquent 🌸</a>
+  <button class="nav-menu" id="nm" onclick="toggleNav()"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="nl">
+    <li><a href="home.html">Home</a></li>
+    <li><a href="story.html">Our Story</a></li>
+    <li><a href="reasons.html">Why I Love You</a></li>
+    <li><a href="letter.html" class="active">Letter</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+  </ul>
+</nav>
+<div class="page">
+  <div class="section">
+    <div class="section-label reveal">A Little Letter</div>
+    <div class="section-title reveal">Happy Birthday, Sayang</div>
+    <hr class="rule reveal">
+    <div class="letter-outer">
+      <div class="letter-wrap" id="letter">
+        <div class="letter-to">To · Anis Nazirah</div>
+        <div class="letter-greeting">My dearest Anis,</div>
+        <div class="letter-body">
+          <p>Today, the world gets to celebrate the day you were born — and honestly, that's one of the best things that ever happened to me.</p>
+          <p>I don't always say the right words out loud, so I made you this. Because you deserve something made with love, not just bought.</p>
+          <p>[Edit this paragraph — write something personal. A memory. A promise. The thing you've been wanting to say. Make it from your heart, Haziquent.]</p>
+          <p>[Edit this paragraph — maybe talk about what she means to you. How your life is better with her in it. Be honest. Be you.]</p>
+          <p>On your birthday and every day after — I hope you feel loved, chosen, and celebrated. Not just today, but always.</p>
+          <p>Thank you for being you. Thank you for being mine.</p>
+        </div>
+        <div class="letter-sign">Forever yours,<span class="name">Haziquent 🤍</span></div>
+        <div class="stamp">💌</div>
+      </div>
+    </div>
+  </div>
+  <footer><span class="heart">💗</span>Made with love by Haziquent &nbsp;·&nbsp; for Anis Nazirah</footer>
+</div>
+<script>
+function toggleNav(){document.getElementById('nm').classList.toggle('open');document.getElementById('nl').classList.toggle('open');}
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.1});
+document.querySelectorAll('.reveal,#letter').forEach(el=>obs.observe(el));
+</script>
+
+<script>
+// ── FADE TRANSITION ROUTER ──
+function navTo(href){
+  if(href===window.location.pathname.split('/').pop()) return;
+  document.body.classList.add('fade-out');
+  setTimeout(()=>{ window.location.href=href; }, 340);
+}
+// intercept all internal nav links
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('a[href]').forEach(a=>{
+    const href=a.getAttribute('href');
+    if(href && !href.startsWith('http') && href.endsWith('.html')){
+      a.addEventListener('click',e=>{
+        e.preventDefault();
+        navTo(href);
+      });
+    }
+  });
+});
+// fade in on arrival
+window.addEventListener('pageshow', ()=>{
+  document.body.style.opacity='0';
+  requestAnimationFrame(()=>{
+    requestAnimationFrame(()=>{
+      document.body.style.transition='opacity .4s ease';
+      document.body.style.opacity='1';
+    });
+  });
+});
+</script>
+</body>
+</html>

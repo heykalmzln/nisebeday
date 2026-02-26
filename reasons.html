@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Why I Love You · Anis & Haziquent</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px;}
+.r-card{background:#fff;border:1px solid rgba(244,160,176,.22);border-radius:20px;padding:28px 24px;box-shadow:0 2px 14px rgba(232,96,122,.05);opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease,box-shadow .25s;}
+.r-card.in{opacity:1;transform:translateY(0);}
+.r-card:hover{transform:translateY(-6px) !important;box-shadow:0 12px 32px rgba(232,96,122,.12);}
+.r-num{font-size:2rem;font-weight:700;letter-spacing:-.04em;color:rgba(244,160,176,.6);margin-bottom:10px;}
+.r-text{font-size:.95rem;color:var(--text);line-height:1.75;font-weight:400;}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="home.html">Anis & Haziquent 🌸</a>
+  <button class="nav-menu" id="nm" onclick="toggleNav()"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="nl">
+    <li><a href="home.html">Home</a></li>
+    <li><a href="story.html">Our Story</a></li>
+    <li><a href="reasons.html" class="active">Why I Love You</a></li>
+    <li><a href="letter.html">Letter</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+  </ul>
+</nav>
+<div class="page">
+  <div class="section">
+    <div class="section-label reveal">From the Heart</div>
+    <div class="section-title reveal">Why I Love You</div>
+    <hr class="rule reveal">
+    <div class="grid">
+      <div class="r-card"><div class="r-num">01</div><div class="r-text">[Edit me — add a reason you love her, big or small. e.g. "The way you laugh at your own jokes."]</div></div>
+      <div class="r-card"><div class="r-num">02</div><div class="r-text">[Edit me — maybe her kindness, her smile, or the way she cares for people around her.]</div></div>
+      <div class="r-card"><div class="r-num">03</div><div class="r-text">[Edit me — something only you would notice. A little habit or quirk that makes her, her.]</div></div>
+      <div class="r-card"><div class="r-num">04</div><div class="r-text">[Edit me — how she makes you feel when you're with her.]</div></div>
+      <div class="r-card"><div class="r-num">05</div><div class="r-text">[Edit me — something you admire about her strength or heart.]</div></div>
+      <div class="r-card"><div class="r-num">06</div><div class="r-text">[Edit me — why you're grateful she's yours. Make her cry a little 🥹]</div></div>
+      <div class="r-card"><div class="r-num">07</div><div class="r-text">[Edit me — add more! You can duplicate these cards as many times as you want.]</div></div>
+      <div class="r-card"><div class="r-num">08</div><div class="r-text">[Edit me — the last one. Make it count. Say the thing you've never said out loud.]</div></div>
+    </div>
+  </div>
+  <footer><span class="heart">💗</span>Made with love by Haziquent &nbsp;·&nbsp; for Anis Nazirah</footer>
+</div>
+<script>
+function toggleNav(){document.getElementById('nm').classList.toggle('open');document.getElementById('nl').classList.toggle('open');}
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.1});
+document.querySelectorAll('.reveal,.r-card').forEach((el,i)=>{if(el.classList.contains('r-card'))el.style.transitionDelay=(i*.08)+'s';obs.observe(el);});
+</script>
+
+<script>
+// ── FADE TRANSITION ROUTER ──
+function navTo(href){
+  if(href===window.location.pathname.split('/').pop()) return;
+  document.body.classList.add('fade-out');
+  setTimeout(()=>{ window.location.href=href; }, 340);
+}
+// intercept all internal nav links
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('a[href]').forEach(a=>{
+    const href=a.getAttribute('href');
+    if(href && !href.startsWith('http') && href.endsWith('.html')){
+      a.addEventListener('click',e=>{
+        e.preventDefault();
+        navTo(href);
+      });
+    }
+  });
+});
+// fade in on arrival
+window.addEventListener('pageshow', ()=>{
+  document.body.style.opacity='0';
+  requestAnimationFrame(()=>{
+    requestAnimationFrame(()=>{
+      document.body.style.transition='opacity .4s ease';
+      document.body.style.opacity='1';
+    });
+  });
+});
+</script>
+</body>
+</html>

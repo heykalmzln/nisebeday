@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Our Story · Anis & Haziquent</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.timeline{position:relative;padding-left:36px;max-width:680px;margin:0 auto;}
+.timeline::before{content:'';position:absolute;left:10px;top:0;bottom:0;width:1.5px;background:linear-gradient(to bottom,var(--pink),var(--pink-mid),rgba(244,160,176,0));}
+.t-item{position:relative;margin-bottom:44px;opacity:0;transform:translateX(-18px);transition:opacity .55s ease,transform .55s ease;}
+.t-item.in{opacity:1;transform:translateX(0);}
+.t-item:nth-child(1){transition-delay:.0s;}.t-item:nth-child(2){transition-delay:.1s;}.t-item:nth-child(3){transition-delay:.2s;}.t-item:nth-child(4){transition-delay:.3s;}.t-item:nth-child(5){transition-delay:.4s;}
+.t-dot{position:absolute;left:-30px;top:18px;width:11px;height:11px;border-radius:50%;background:var(--pink);border:2.5px solid var(--pink-pale);box-shadow:0 0 0 4px rgba(232,96,122,.14);}
+.t-date{font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--pink);margin-bottom:10px;}
+.t-card{background:#fff;border:1px solid rgba(244,160,176,.22);border-radius:18px;padding:24px 26px;box-shadow:0 2px 14px rgba(232,96,122,.05);}
+.t-card h3{font-size:1.05rem;font-weight:600;color:var(--text);margin-bottom:8px;letter-spacing:-.01em;}
+.t-card p{font-size:.95rem;color:var(--text-mid);line-height:1.75;font-weight:300;}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-brand" href="home.html">Anis & Haziquent 🌸</a>
+  <button class="nav-menu" id="nm" onclick="toggleNav()"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="nl">
+    <li><a href="home.html">Home</a></li>
+    <li><a href="story.html" class="active">Our Story</a></li>
+    <li><a href="reasons.html">Why I Love You</a></li>
+    <li><a href="letter.html">Letter</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+  </ul>
+</nav>
+<div class="page">
+  <div class="section">
+    <div class="section-label reveal">Chapter One</div>
+    <div class="section-title reveal">Our Story</div>
+    <hr class="rule reveal">
+    <div class="timeline">
+      <div class="t-item"><div class="t-dot"></div><div class="t-date">November 2023</div><div class="t-card"><h3>The Beginning 🌸</h3><p>We met at Machang — I looked up into you, and something in me knew. That moment started everything.</p></div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-date">23 · 11 · 2023</div><div class="t-card"><h3>We Became Us 💕</h3><p>The day we made it official. The day I got to call you mine. One of the best days of my life.</p></div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-date">[Edit: add date]</div><div class="t-card"><h3>[Edit: Add a milestone] 🌷</h3><p>[Edit this — add your favourite memory together. A trip, a moment, a late-night conversation. Make it yours.]</p></div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-date">[Edit: add date]</div><div class="t-card"><h3>[Edit: Another memory] ✨</h3><p>[Edit this — another moment you want to remember forever. Big or small — every moment counts.]</p></div></div>
+      <div class="t-item"><div class="t-dot"></div><div class="t-date">Today & Always</div><div class="t-card"><h3>Forever & More 💞</h3><p>[Edit this — write about what you're looking forward to together. Your future. Dreams. Plans. Anything.]</p></div></div>
+    </div>
+  </div>
+  <footer><span class="heart">💗</span>Made with love by Haziquent &nbsp;·&nbsp; for Anis Nazirah</footer>
+</div>
+<script>
+function toggleNav(){document.getElementById('nm').classList.toggle('open');document.getElementById('nl').classList.toggle('open');}
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.12});
+document.querySelectorAll('.reveal,.t-item').forEach(el=>obs.observe(el));
+</script>
+
+<script>
+// ── FADE TRANSITION ROUTER ──
+function navTo(href){
+  if(href===window.location.pathname.split('/').pop()) return;
+  document.body.classList.add('fade-out');
+  setTimeout(()=>{ window.location.href=href; }, 340);
+}
+// intercept all internal nav links
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('a[href]').forEach(a=>{
+    const href=a.getAttribute('href');
+    if(href && !href.startsWith('http') && href.endsWith('.html')){
+      a.addEventListener('click',e=>{
+        e.preventDefault();
+        navTo(href);
+      });
+    }
+  });
+});
+// fade in on arrival
+window.addEventListener('pageshow', ()=>{
+  document.body.style.opacity='0';
+  requestAnimationFrame(()=>{
+    requestAnimationFrame(()=>{
+      document.body.style.transition='opacity .4s ease';
+      document.body.style.opacity='1';
+    });
+  });
+});
+</script>
+</body>
+</html>
