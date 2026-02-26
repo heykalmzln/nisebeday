@@ -1,34 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
 <title>Our Story · Anis & Haziquent</title>
 <link rel="stylesheet" href="shared.css">
 <style>
-.timeline{position:relative;padding-left:36px;max-width:680px;margin:0 auto;}
-.timeline::before{content:'';position:absolute;left:10px;top:0;bottom:0;width:1.5px;background:linear-gradient(to bottom,var(--pink),var(--pink-mid),rgba(244,160,176,0));}
-.t-item{position:relative;margin-bottom:44px;opacity:0;transform:translateX(-18px);transition:opacity .55s ease,transform .55s ease;}
+.timeline{position:relative;padding-left:32px;max-width:660px;margin:0 auto;}
+.timeline::before{content:'';position:absolute;left:9px;top:0;bottom:0;width:1.5px;background:linear-gradient(to bottom,var(--pink),var(--pink-mid),rgba(244,160,176,0));}
+.t-item{position:relative;margin-bottom:36px;opacity:0;transform:translateX(-16px);transition:opacity .5s ease,transform .5s ease;}
 .t-item.in{opacity:1;transform:translateX(0);}
-.t-item:nth-child(1){transition-delay:.0s;}.t-item:nth-child(2){transition-delay:.1s;}.t-item:nth-child(3){transition-delay:.2s;}.t-item:nth-child(4){transition-delay:.3s;}.t-item:nth-child(5){transition-delay:.4s;}
-.t-dot{position:absolute;left:-30px;top:18px;width:11px;height:11px;border-radius:50%;background:var(--pink);border:2.5px solid var(--pink-pale);box-shadow:0 0 0 4px rgba(232,96,122,.14);}
-.t-date{font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--pink);margin-bottom:10px;}
-.t-card{background:#fff;border:1px solid rgba(244,160,176,.22);border-radius:18px;padding:24px 26px;box-shadow:0 2px 14px rgba(232,96,122,.05);}
-.t-card h3{font-size:1.05rem;font-weight:600;color:var(--text);margin-bottom:8px;letter-spacing:-.01em;}
-.t-card p{font-size:.95rem;color:var(--text-mid);line-height:1.75;font-weight:300;}
+.t-item:nth-child(1){transition-delay:0s}.t-item:nth-child(2){transition-delay:.1s}.t-item:nth-child(3){transition-delay:.2s}.t-item:nth-child(4){transition-delay:.3s}.t-item:nth-child(5){transition-delay:.4s}
+.t-dot{position:absolute;left:-27px;top:16px;width:11px;height:11px;border-radius:50%;background:var(--pink);border:2.5px solid var(--pink-pale);box-shadow:0 0 0 4px rgba(232,96,122,.14);}
+.t-date{font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--pink);margin-bottom:8px;}
+.t-card{background:#fff;border:1px solid rgba(244,160,176,.2);border-radius:16px;padding:20px 22px;box-shadow:0 2px 12px rgba(232,96,122,.05);}
+.t-card h3{font-size:1rem;font-weight:600;color:var(--text);margin-bottom:6px;letter-spacing:-.01em;}
+.t-card p{font-size:.92rem;color:var(--text-mid);line-height:1.75;font-weight:300;}
 </style>
 </head>
 <body>
-<nav>
+<nav class="topnav">
   <a class="nav-brand" href="home.html">Anis & Haziquent 🌸</a>
-  <button class="nav-menu" id="nm" onclick="toggleNav()"><span></span><span></span><span></span></button>
-  <ul class="nav-links" id="nl">
-    <li><a href="home.html">Home</a></li>
-    <li><a href="story.html" class="active">Our Story</a></li>
-    <li><a href="reasons.html">Why I Love You</a></li>
-    <li><a href="letter.html">Letter</a></li>
-    <li><a href="gallery.html">Gallery</a></li>
+  <button class="nav-toggle" id="nt" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  <ul class="nav-links">
+    <li><a href="home.html">Home</a></li><li><a href="story.html" class="active">Our Story</a></li><li><a href="reasons.html">Why I Love You</a></li><li><a href="letter.html">Letter</a></li><li><a href="gallery.html">Gallery</a></li>
   </ul>
 </nav>
+<div class="nav-dropdown" id="nd"><ul>
+  <li><a href="home.html">🏠&nbsp; Home</a></li>
+  <li><a href="story.html" class="active">📖&nbsp; Our Story</a></li>
+  <li><a href="reasons.html">💗&nbsp; Why I Love You</a></li>
+  <li><a href="letter.html">✉️&nbsp; Birthday Letter</a></li>
+  <li><a href="gallery.html">🖼️&nbsp; Gallery</a></li>
+</ul></div>
+<nav class="bottom-nav"><ul>
+  <li><a href="home.html"><span class="bn-icon">🏠</span><span class="bn-label">Home</span></a></li>
+  <li><a href="story.html" class="active"><span class="bn-icon">📖</span><span class="bn-label">Story</span></a></li>
+  <li><a href="reasons.html"><span class="bn-icon">💗</span><span class="bn-label">Love</span></a></li>
+  <li><a href="letter.html"><span class="bn-icon">✉️</span><span class="bn-label">Letter</span></a></li>
+  <li><a href="gallery.html"><span class="bn-icon">🖼️</span><span class="bn-label">Gallery</span></a></li>
+</ul></nav>
+
 <div class="page">
   <div class="section">
     <div class="section-label reveal">Chapter One</div>
@@ -45,40 +58,13 @@
   <footer><span class="heart">💗</span>Made with love by Haziquent &nbsp;·&nbsp; for Anis Nazirah</footer>
 </div>
 <script>
-function toggleNav(){document.getElementById('nm').classList.toggle('open');document.getElementById('nl').classList.toggle('open');}
-const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.12});
+function toggleMenu(){document.getElementById('nt').classList.toggle('open');document.getElementById('nd').classList.toggle('open');}
+document.querySelectorAll('.nav-dropdown a').forEach(a=>a.addEventListener('click',()=>{document.getElementById('nt').classList.remove('open');document.getElementById('nd').classList.remove('open');}));
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.1});
 document.querySelectorAll('.reveal,.t-item').forEach(el=>obs.observe(el));
-</script>
-
-<script>
-// ── FADE TRANSITION ROUTER ──
-function navTo(href){
-  if(href===window.location.pathname.split('/').pop()) return;
-  document.body.classList.add('fade-out');
-  setTimeout(()=>{ window.location.href=href; }, 340);
-}
-// intercept all internal nav links
-document.addEventListener('DOMContentLoaded',()=>{
-  document.querySelectorAll('a[href]').forEach(a=>{
-    const href=a.getAttribute('href');
-    if(href && !href.startsWith('http') && href.endsWith('.html')){
-      a.addEventListener('click',e=>{
-        e.preventDefault();
-        navTo(href);
-      });
-    }
-  });
-});
-// fade in on arrival
-window.addEventListener('pageshow', ()=>{
-  document.body.style.opacity='0';
-  requestAnimationFrame(()=>{
-    requestAnimationFrame(()=>{
-      document.body.style.transition='opacity .4s ease';
-      document.body.style.opacity='1';
-    });
-  });
-});
+function navTo(h){document.body.classList.add('fade-out');setTimeout(()=>location.href=h,320);}
+document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('a[href]').forEach(a=>{const h=a.getAttribute('href');if(h&&!h.startsWith('http')&&h.endsWith('.html'))a.addEventListener('click',e=>{e.preventDefault();navTo(h);});});});
+window.addEventListener('pageshow',()=>{document.body.style.opacity='0';requestAnimationFrame(()=>requestAnimationFrame(()=>{document.body.style.transition='opacity .4s ease';document.body.style.opacity='1';}));});
 </script>
 </body>
 </html>

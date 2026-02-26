@@ -1,34 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <title>For Anis 🌸</title>
 <style>
 :root{--pink:#e8607a;--pink-mid:#f4a0b0;--pink-pale:#fff5f7;--text:#3d1a24;--text-mid:#7a3a4a;--f:-apple-system,"SF Pro Display","Helvetica Neue",sans-serif;}
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:var(--f);background:var(--pink-pale);min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;-webkit-font-smoothing:antialiased;}
-body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 60% 50% at 10% 10%,rgba(244,160,176,.25),transparent),radial-gradient(ellipse 50% 60% at 90% 90%,rgba(232,96,122,.12),transparent);pointer-events:none;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  font-family:var(--f);background:var(--pink-pale);
+  min-height:100svh;display:flex;align-items:center;justify-content:center;
+  overflow:hidden;-webkit-font-smoothing:antialiased;
+  padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 60% 50% at 10% 10%,rgba(244,160,176,.28),transparent),radial-gradient(ellipse 50% 60% at 90% 90%,rgba(232,96,122,.14),transparent);pointer-events:none;}
 .petals{position:fixed;inset:0;pointer-events:none;overflow:hidden;}
 .petal{position:absolute;animation:fall linear infinite;opacity:0;}
-@keyframes fall{0%{transform:translateY(-60px) rotate(0deg);opacity:0;}10%{opacity:.55;}90%{opacity:.4;}100%{transform:translateY(105vh) rotate(400deg);opacity:0;}}
-.card{position:relative;z-index:10;background:rgba(255,255,255,.82);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(244,160,176,.35);border-radius:32px;padding:64px 52px 52px;text-align:center;box-shadow:0 24px 80px rgba(232,96,122,.13),0 2px 8px rgba(232,96,122,.06);width:min(420px,92vw);animation:riseIn .9s cubic-bezier(.22,1,.36,1) both;}
-@keyframes riseIn{from{opacity:0;transform:translateY(40px) scale(.97);}to{opacity:1;transform:translateY(0) scale(1);}}
-.icon{font-size:3.2rem;margin-bottom:12px;display:block;animation:breathe 3s ease-in-out infinite;}
+@keyframes fall{0%{transform:translateY(-60px) rotate(0deg);opacity:0;}10%{opacity:.5;}90%{opacity:.35;}100%{transform:translateY(110vh) rotate(400deg);opacity:0;}}
+.card{
+  position:relative;z-index:10;
+  background:rgba(255,255,255,.86);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border:1px solid rgba(244,160,176,.35);
+  border-radius:28px;
+  padding:52px 36px 44px;
+  text-align:center;
+  box-shadow:0 24px 72px rgba(232,96,122,.13),0 2px 8px rgba(232,96,122,.06);
+  width:min(400px,92vw);
+  animation:riseIn .9s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes riseIn{from{opacity:0;transform:translateY(36px) scale(.97);}to{opacity:1;transform:translateY(0) scale(1);}}
+.icon{font-size:2.8rem;margin-bottom:10px;display:block;animation:breathe 3s ease-in-out infinite;}
 @keyframes breathe{0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}
-h1{font-size:2rem;font-weight:700;letter-spacing:-.03em;color:var(--text);margin-bottom:6px;}
-.sub{font-size:.95rem;color:var(--text-mid);letter-spacing:.02em;margin-bottom:36px;font-weight:300;}
-.pw-input{width:100%;padding:15px 22px;border:1.5px solid var(--pink-mid);border-radius:50px;background:rgba(255,255,255,.9);font-family:var(--f);font-size:1.05rem;color:var(--text);letter-spacing:.2em;text-align:center;outline:none;transition:border-color .25s,box-shadow .25s;margin-bottom:14px;}
+h1{font-size:1.75rem;font-weight:700;letter-spacing:-.03em;color:var(--text);margin-bottom:6px;}
+.sub{font-size:.9rem;color:var(--text-mid);margin-bottom:32px;font-weight:300;line-height:1.5;}
+.pw-input{
+  width:100%;padding:16px 22px;
+  border:1.5px solid var(--pink-mid);border-radius:50px;
+  background:rgba(255,255,255,.95);
+  font-family:var(--f);font-size:1.1rem;
+  color:var(--text);letter-spacing:.2em;text-align:center;
+  outline:none;transition:border-color .25s,box-shadow .25s;
+  margin-bottom:12px;
+  -webkit-appearance:none;
+}
 .pw-input:focus{border-color:var(--pink);box-shadow:0 0 0 4px rgba(232,96,122,.1);}
-.pw-input::placeholder{letter-spacing:.1em;color:#ccc;}
-.btn{width:100%;padding:15px;background:linear-gradient(135deg,var(--pink),#f4849a);color:#fff;border:none;border-radius:50px;font-family:var(--f);font-size:1rem;font-weight:600;letter-spacing:.04em;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:0 8px 24px rgba(232,96,122,.25);}
-.btn:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(232,96,122,.3);}
+.pw-input::placeholder{letter-spacing:.08em;color:#ccc;}
+.btn{
+  width:100%;padding:16px;
+  background:linear-gradient(135deg,var(--pink),#f4849a);
+  color:#fff;border:none;border-radius:50px;
+  font-family:var(--f);font-size:1rem;font-weight:600;
+  letter-spacing:.04em;cursor:pointer;
+  transition:transform .2s,box-shadow .2s;
+  box-shadow:0 8px 24px rgba(232,96,122,.3);
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+.btn:active{transform:scale(.98);}
 .error{font-size:.85rem;color:var(--pink);margin-top:12px;min-height:20px;}
-.hint{font-size:.78rem;color:#ccc;margin-top:22px;font-weight:300;font-style:italic;}
+.hint{font-size:.75rem;color:#bbb;margin-top:20px;font-weight:300;font-style:italic;}
 .hint strong{color:var(--pink-mid);font-style:normal;}
 @keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-8px);}75%{transform:translateX(8px);}}
-.shake{animation:shake .35s ease;}
-.card.exit{animation:exitCard .6s cubic-bezier(.55,.06,.68,.19) forwards;}
-@keyframes exitCard{to{opacity:0;transform:scale(1.08) translateY(-30px);}}
+.shake{animation:shake .32s ease;}
+.card.exit{animation:exitCard .55s cubic-bezier(.55,.06,.68,.19) forwards;}
+@keyframes exitCard{to{opacity:0;transform:scale(1.06) translateY(-28px);}}
 </style>
 </head>
 <body>
@@ -36,54 +75,23 @@ h1{font-size:2rem;font-weight:700;letter-spacing:-.03em;color:var(--text);margin
 <div class="card" id="card">
   <span class="icon">🌸</span>
   <h1>For Someone Special</h1>
-  <p class="sub">Enter the secret password to open your gift</p>
-  <input class="pw-input" type="password" id="pw" placeholder="••••••" maxlength="20" autofocus />
+  <p class="sub">Enter the secret password<br>to open your gift</p>
+  <input class="pw-input" type="password" id="pw" placeholder="••••••" maxlength="20" inputmode="numeric" autocomplete="off" />
   <button class="btn" id="btn">Open ✨</button>
   <div class="error" id="err"></div>
   <p class="hint">Hint: it's a date &nbsp;·&nbsp; <strong>for Anis Nazirah 🤍</strong></p>
 </div>
 <script>
 const P=document.getElementById('petals');
-['🌸','🌷','💮','🌺','🩷'].forEach(e=>{for(let j=0;j<4;j++){const p=document.createElement('div');p.className='petal';p.textContent=e;p.style.cssText='left:'+Math.random()*100+'vw;font-size:'+(0.8+Math.random()*1.1)+'rem;animation-duration:'+(7+Math.random()*9)+'s;animation-delay:'+(Math.random()*10)+'s';P.appendChild(p);}});
+['🌸','🌷','💮','🌺','🩷'].forEach(e=>{for(let j=0;j<4;j++){const p=document.createElement('div');p.className='petal';p.textContent=e;p.style.cssText='left:'+Math.random()*100+'vw;font-size:'+(0.8+Math.random()*1.2)+'rem;animation-duration:'+(7+Math.random()*9)+'s;animation-delay:'+(Math.random()*10)+'s';P.appendChild(p);}});
 const PW='270203';
 function attempt(){
   const v=document.getElementById('pw').value.trim(),err=document.getElementById('err');
-  if(v===PW){document.getElementById('card').classList.add('exit');setTimeout(()=>{window.location.href='home.html';},580);}
-  else{err.textContent='✿ Wrong password, try again ~';const inp=document.getElementById('pw');inp.value='';inp.classList.add('shake');setTimeout(()=>inp.classList.remove('shake'),400);}
+  if(v===PW){document.getElementById('card').classList.add('exit');setTimeout(()=>{window.location.href='home.html';},540);}
+  else{err.textContent='✿ Wrong password, try again ~';const i=document.getElementById('pw');i.value='';i.classList.add('shake');setTimeout(()=>i.classList.remove('shake'),380);i.focus();}
 }
-document.getElementById('btn').onclick=attempt;
+document.getElementById('btn').addEventListener('click',attempt);
 document.getElementById('pw').addEventListener('keydown',e=>{if(e.key==='Enter')attempt();});
-</script>
-
-<script>
-// ── FADE TRANSITION ROUTER ──
-function navTo(href){
-  if(href===window.location.pathname.split('/').pop()) return;
-  document.body.classList.add('fade-out');
-  setTimeout(()=>{ window.location.href=href; }, 340);
-}
-// intercept all internal nav links
-document.addEventListener('DOMContentLoaded',()=>{
-  document.querySelectorAll('a[href]').forEach(a=>{
-    const href=a.getAttribute('href');
-    if(href && !href.startsWith('http') && href.endsWith('.html')){
-      a.addEventListener('click',e=>{
-        e.preventDefault();
-        navTo(href);
-      });
-    }
-  });
-});
-// fade in on arrival
-window.addEventListener('pageshow', ()=>{
-  document.body.style.opacity='0';
-  requestAnimationFrame(()=>{
-    requestAnimationFrame(()=>{
-      document.body.style.transition='opacity .4s ease';
-      document.body.style.opacity='1';
-    });
-  });
-});
 </script>
 </body>
 </html>

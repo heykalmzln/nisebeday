@@ -1,31 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
 <title>Home · Anis & Haziquent</title>
 <link rel="stylesheet" href="shared.css">
 <style>
+/* floating hearts */
 .hearts{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
-.h{position:absolute;bottom:0;opacity:0;animation:riseHeart linear infinite;}
-@keyframes riseHeart{0%{transform:translateY(0) scale(0);opacity:0;}15%{opacity:.7;transform:translateY(-15vh) scale(1);}100%{transform:translateY(-90vh) scale(.6);opacity:0;}}
-.date-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(232,96,122,.08);border:1px solid rgba(232,96,122,.2);border-radius:50px;padding:8px 20px;font-size:.85rem;font-weight:500;letter-spacing:.08em;color:var(--pink);margin-bottom:28px;}
-.nav-cards{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:52px;}
-.nav-pill{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid rgba(244,160,176,.3);border-radius:16px;padding:16px 22px;text-decoration:none;color:var(--text);font-size:.9rem;font-weight:500;box-shadow:0 2px 12px rgba(232,96,122,.06);transition:transform .2s,box-shadow .2s,border-color .2s;min-width:170px;}
-.nav-pill:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(232,96,122,.13);border-color:rgba(232,96,122,.3);}
-.pill-icon{font-size:1.4rem;}
-.pill-text{display:flex;flex-direction:column;gap:2px;}
-.pill-label{font-size:.72rem;color:var(--text-mid);font-weight:400;}
-.since-wrap{background:linear-gradient(135deg,rgba(232,96,122,.06),rgba(244,160,176,.04));border:1px solid rgba(244,160,176,.2);border-radius:24px;padding:40px 32px;text-align:center;}
-.since-label{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--pink);font-weight:500;margin-bottom:8px;}
-.since-count{font-size:clamp(2.5rem,8vw,5rem);font-weight:700;letter-spacing:-.04em;color:var(--text);}
-.since-sub{font-size:.95rem;color:var(--text-mid);font-weight:300;margin-top:6px;}
+.h{position:absolute;bottom:0;opacity:0;animation:riseH linear infinite;}
+@keyframes riseH{0%{transform:translateY(0) scale(0);opacity:0;}15%{opacity:.65;transform:translateY(-12vh) scale(1);}100%{transform:translateY(-88vh) scale(.5);opacity:0;}}
+
+/* date badge */
+.date-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(232,96,122,.08);border:1px solid rgba(232,96,122,.18);
+  border-radius:50px;padding:7px 18px;
+  font-size:.82rem;font-weight:500;letter-spacing:.08em;
+  color:var(--pink);margin-bottom:24px;
+}
+
+/* nav pills grid */
+.nav-cards{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:36px;
+  width:100%;max-width:440px;
+}
+.nav-pill{
+  display:flex;align-items:center;gap:12px;
+  background:#fff;
+  border:1px solid rgba(244,160,176,.28);
+  border-radius:16px;padding:14px 16px;
+  text-decoration:none;color:var(--text);
+  font-size:.88rem;font-weight:500;
+  box-shadow:0 2px 12px rgba(232,96,122,.06);
+  transition:transform .2s,box-shadow .2s;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+.nav-pill:active{transform:scale(.97);}
+.pill-icon{font-size:1.3rem;flex-shrink:0;}
+.pill-text{display:flex;flex-direction:column;gap:1px;min-width:0;}
+.pill-text strong{font-size:.85rem;white-space:nowrap;}
+.pill-label{font-size:.68rem;color:var(--text-mid);font-weight:400;}
+
+/* days counter */
+.since-wrap{
+  background:linear-gradient(135deg,rgba(232,96,122,.06),rgba(244,160,176,.04));
+  border:1px solid rgba(244,160,176,.18);
+  border-radius:22px;padding:36px 28px;text-align:center;
+}
+.since-label{font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--pink);font-weight:500;margin-bottom:6px;}
+.since-count{font-size:clamp(2.8rem,10vw,5rem);font-weight:700;letter-spacing:-.04em;color:var(--text);line-height:1;}
+.since-sub{font-size:.88rem;color:var(--text-mid);font-weight:300;margin-top:8px;}
+
+@media(max-width:380px){
+  .nav-cards{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body>
-<nav>
+
+<nav class="topnav">
   <a class="nav-brand" href="home.html">Anis & Haziquent 🌸</a>
-  <button class="nav-menu" id="nm" onclick="toggleNav()"><span></span><span></span><span></span></button>
-  <ul class="nav-links" id="nl">
+  <button class="nav-toggle" id="nt" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links">
     <li><a href="home.html" class="active">Home</a></li>
     <li><a href="story.html">Our Story</a></li>
     <li><a href="reasons.html">Why I Love You</a></li>
@@ -33,6 +75,26 @@
     <li><a href="gallery.html">Gallery</a></li>
   </ul>
 </nav>
+<div class="nav-dropdown" id="nd">
+  <ul>
+    <li><a href="home.html" class="active">🏠&nbsp; Home</a></li>
+    <li><a href="story.html">📖&nbsp; Our Story</a></li>
+    <li><a href="reasons.html">💗&nbsp; Why I Love You</a></li>
+    <li><a href="letter.html">✉️&nbsp; Birthday Letter</a></li>
+    <li><a href="gallery.html">🖼️&nbsp; Gallery</a></li>
+  </ul>
+</div>
+
+<nav class="bottom-nav">
+  <ul>
+    <li><a href="home.html" class="active"><span class="bn-icon">🏠</span><span class="bn-label">Home</span></a></li>
+    <li><a href="story.html"><span class="bn-icon">📖</span><span class="bn-label">Story</span></a></li>
+    <li><a href="reasons.html"><span class="bn-icon">💗</span><span class="bn-label">Love</span></a></li>
+    <li><a href="letter.html"><span class="bn-icon">✉️</span><span class="bn-label">Letter</span></a></li>
+    <li><a href="gallery.html"><span class="bn-icon">🖼️</span><span class="bn-label">Gallery</span></a></li>
+  </ul>
+</nav>
+
 <div class="page">
   <div class="hero">
     <div class="hero-blob"></div>
@@ -48,6 +110,7 @@
       <a class="nav-pill" href="gallery.html"><span class="pill-icon">🖼️</span><span class="pill-text"><strong>Gallery</strong><span class="pill-label">Our memories</span></span></a>
     </div>
   </div>
+
   <div class="section">
     <div class="since-wrap reveal">
       <div class="since-label">Together since</div>
@@ -55,46 +118,55 @@
       <div class="since-sub">days of loving you &nbsp;·&nbsp; 23.11.2023</div>
     </div>
   </div>
+
   <footer><span class="heart">💗</span>Made with love by Haziquent &nbsp;·&nbsp; for Anis Nazirah</footer>
 </div>
-<script>
-function toggleNav(){document.getElementById('nm').classList.toggle('open');document.getElementById('nl').classList.toggle('open');}
-const start=new Date('2023-11-23'),today=new Date(),diff=Math.floor((today-start)/(1000*60*60*24));
-document.getElementById('days').textContent=diff.toLocaleString();
-const hc=document.getElementById('hearts'),emojis=['🤍','💗','💕','🌸','💞','🩷'];
-setInterval(()=>{const el=document.createElement('div');el.className='h';el.textContent=emojis[Math.floor(Math.random()*emojis.length)];el.style.cssText='left:'+Math.random()*100+'%;font-size:'+(0.7+Math.random()*.7)+'rem;animation-duration:'+(5+Math.random()*4)+'s';hc.appendChild(el);setTimeout(()=>el.remove(),9000);},700);
-const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.15});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-</script>
 
 <script>
-// ── FADE TRANSITION ROUTER ──
-function navTo(href){
-  if(href===window.location.pathname.split('/').pop()) return;
-  document.body.classList.add('fade-out');
-  setTimeout(()=>{ window.location.href=href; }, 340);
+function toggleMenu(){
+  document.getElementById('nt').classList.toggle('open');
+  document.getElementById('nd').classList.toggle('open');
 }
-// intercept all internal nav links
-document.addEventListener('DOMContentLoaded',()=>{
-  document.querySelectorAll('a[href]').forEach(a=>{
-    const href=a.getAttribute('href');
-    if(href && !href.startsWith('http') && href.endsWith('.html')){
-      a.addEventListener('click',e=>{
-        e.preventDefault();
-        navTo(href);
-      });
-    }
+// close dropdown when link tapped
+document.querySelectorAll('.nav-dropdown a').forEach(a=>{
+  a.addEventListener('click',()=>{
+    document.getElementById('nt').classList.remove('open');
+    document.getElementById('nd').classList.remove('open');
   });
 });
-// fade in on arrival
-window.addEventListener('pageshow', ()=>{
-  document.body.style.opacity='0';
-  requestAnimationFrame(()=>{
-    requestAnimationFrame(()=>{
-      document.body.style.transition='opacity .4s ease';
-      document.body.style.opacity='1';
-    });
+
+// days counter
+const start=new Date('2023-11-23'),diff=Math.floor((new Date()-start)/(864e5));
+document.getElementById('days').textContent=diff.toLocaleString();
+
+// hearts
+const hc=document.getElementById('hearts'),em=['🤍','💗','💕','🌸','💞','🩷'];
+setInterval(()=>{
+  const el=document.createElement('div');
+  el.className='h';el.textContent=em[Math.floor(Math.random()*em.length)];
+  el.style.cssText='left:'+Math.random()*100+'%;font-size:'+(0.6+Math.random()*.8)+'rem;animation-duration:'+(5+Math.random()*4)+'s';
+  hc.appendChild(el);setTimeout(()=>el.remove(),9e3);
+},800);
+
+// reveal
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// fade transition
+function navTo(href){document.body.classList.add('fade-out');setTimeout(()=>location.href=href,320);}
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('a[href]').forEach(a=>{
+    const h=a.getAttribute('href');
+    if(h&&!h.startsWith('http')&&h.endsWith('.html'))
+      a.addEventListener('click',e=>{e.preventDefault();navTo(h);});
   });
+});
+window.addEventListener('pageshow',()=>{
+  document.body.style.opacity='0';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    document.body.style.transition='opacity .4s ease';
+    document.body.style.opacity='1';
+  }));
 });
 </script>
 </body>

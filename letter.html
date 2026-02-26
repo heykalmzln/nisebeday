@@ -1,36 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
 <title>Birthday Letter · Anis & Haziquent</title>
 <link rel="stylesheet" href="shared.css">
 <style>
-.letter-outer{max-width:640px;margin:0 auto;}
-.letter-wrap{background:#fff;border:1px solid rgba(244,160,176,.25);border-radius:24px;padding:56px 52px;box-shadow:0 4px 32px rgba(232,96,122,.07);position:relative;overflow:hidden;opacity:0;transform:translateY(28px) scale(.98);transition:opacity .7s ease,transform .7s ease;}
+.letter-outer{max-width:620px;margin:0 auto;}
+.letter-wrap{
+  background:#fff;
+  border:1px solid rgba(244,160,176,.22);
+  border-radius:22px;padding:44px 36px;
+  box-shadow:0 4px 28px rgba(232,96,122,.07);
+  position:relative;overflow:hidden;
+  opacity:0;transform:translateY(24px) scale(.98);
+  transition:opacity .65s ease,transform .65s ease;
+}
 .letter-wrap.in{opacity:1;transform:translateY(0) scale(1);}
-.letter-wrap::before{content:'"';position:absolute;top:16px;left:28px;font-size:8rem;line-height:1;font-weight:700;color:rgba(244,160,176,.15);font-family:Georgia,serif;pointer-events:none;}
-.letter-to{font-size:.75rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--pink);margin-bottom:20px;}
-.letter-greeting{font-size:1.6rem;font-weight:700;letter-spacing:-.02em;color:var(--text);margin-bottom:28px;}
-.letter-body{font-size:1rem;line-height:1.9;color:var(--text-mid);font-weight:300;}
-.letter-body p+p{margin-top:20px;}
-.letter-sign{margin-top:40px;font-size:1.1rem;font-weight:600;color:var(--text);letter-spacing:-.01em;}
-.letter-sign .name{font-size:1.6rem;font-weight:700;letter-spacing:-.03em;color:var(--pink);display:block;margin-top:4px;}
-.stamp{position:absolute;bottom:28px;right:28px;font-size:2rem;opacity:.3;transform:rotate(12deg);}
-@media(max-width:600px){.letter-wrap{padding:36px 26px;}}
+.letter-wrap::before{
+  content:'"';position:absolute;top:10px;left:20px;
+  font-size:7rem;line-height:1;font-weight:700;
+  color:rgba(244,160,176,.12);font-family:Georgia,serif;pointer-events:none;
+}
+.letter-to{font-size:.7rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--pink);margin-bottom:16px;}
+.letter-greeting{font-size:1.45rem;font-weight:700;letter-spacing:-.02em;color:var(--text);margin-bottom:22px;}
+.letter-body{font-size:.95rem;line-height:1.9;color:var(--text-mid);font-weight:300;}
+.letter-body p+p{margin-top:16px;}
+.letter-sign{margin-top:32px;font-size:1rem;font-weight:600;color:var(--text);}
+.letter-sign .name{font-size:1.45rem;font-weight:700;letter-spacing:-.03em;color:var(--pink);display:block;margin-top:3px;}
+.stamp{position:absolute;bottom:20px;right:20px;font-size:1.8rem;opacity:.25;transform:rotate(12deg);}
+@media(max-width:640px){.letter-wrap{padding:32px 22px;}.letter-wrap::before{font-size:5rem;}}
 </style>
 </head>
 <body>
-<nav>
+<nav class="topnav">
   <a class="nav-brand" href="home.html">Anis & Haziquent 🌸</a>
-  <button class="nav-menu" id="nm" onclick="toggleNav()"><span></span><span></span><span></span></button>
-  <ul class="nav-links" id="nl">
-    <li><a href="home.html">Home</a></li>
-    <li><a href="story.html">Our Story</a></li>
-    <li><a href="reasons.html">Why I Love You</a></li>
-    <li><a href="letter.html" class="active">Letter</a></li>
-    <li><a href="gallery.html">Gallery</a></li>
+  <button class="nav-toggle" id="nt" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  <ul class="nav-links">
+    <li><a href="home.html">Home</a></li><li><a href="story.html">Our Story</a></li><li><a href="reasons.html">Why I Love You</a></li><li><a href="letter.html" class="active">Letter</a></li><li><a href="gallery.html">Gallery</a></li>
   </ul>
 </nav>
+<div class="nav-dropdown" id="nd"><ul>
+  <li><a href="home.html">🏠&nbsp; Home</a></li>
+  <li><a href="story.html">📖&nbsp; Our Story</a></li>
+  <li><a href="reasons.html">💗&nbsp; Why I Love You</a></li>
+  <li><a href="letter.html" class="active">✉️&nbsp; Birthday Letter</a></li>
+  <li><a href="gallery.html">🖼️&nbsp; Gallery</a></li>
+</ul></div>
+<nav class="bottom-nav"><ul>
+  <li><a href="home.html"><span class="bn-icon">🏠</span><span class="bn-label">Home</span></a></li>
+  <li><a href="story.html"><span class="bn-icon">📖</span><span class="bn-label">Story</span></a></li>
+  <li><a href="reasons.html"><span class="bn-icon">💗</span><span class="bn-label">Love</span></a></li>
+  <li><a href="letter.html" class="active"><span class="bn-icon">✉️</span><span class="bn-label">Letter</span></a></li>
+  <li><a href="gallery.html"><span class="bn-icon">🖼️</span><span class="bn-label">Gallery</span></a></li>
+</ul></nav>
+
 <div class="page">
   <div class="section">
     <div class="section-label reveal">A Little Letter</div>
@@ -56,40 +81,13 @@
   <footer><span class="heart">💗</span>Made with love by Haziquent &nbsp;·&nbsp; for Anis Nazirah</footer>
 </div>
 <script>
-function toggleNav(){document.getElementById('nm').classList.toggle('open');document.getElementById('nl').classList.toggle('open');}
-const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.1});
+function toggleMenu(){document.getElementById('nt').classList.toggle('open');document.getElementById('nd').classList.toggle('open');}
+document.querySelectorAll('.nav-dropdown a').forEach(a=>a.addEventListener('click',()=>{document.getElementById('nt').classList.remove('open');document.getElementById('nd').classList.remove('open');}));
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.08});
 document.querySelectorAll('.reveal,#letter').forEach(el=>obs.observe(el));
-</script>
-
-<script>
-// ── FADE TRANSITION ROUTER ──
-function navTo(href){
-  if(href===window.location.pathname.split('/').pop()) return;
-  document.body.classList.add('fade-out');
-  setTimeout(()=>{ window.location.href=href; }, 340);
-}
-// intercept all internal nav links
-document.addEventListener('DOMContentLoaded',()=>{
-  document.querySelectorAll('a[href]').forEach(a=>{
-    const href=a.getAttribute('href');
-    if(href && !href.startsWith('http') && href.endsWith('.html')){
-      a.addEventListener('click',e=>{
-        e.preventDefault();
-        navTo(href);
-      });
-    }
-  });
-});
-// fade in on arrival
-window.addEventListener('pageshow', ()=>{
-  document.body.style.opacity='0';
-  requestAnimationFrame(()=>{
-    requestAnimationFrame(()=>{
-      document.body.style.transition='opacity .4s ease';
-      document.body.style.opacity='1';
-    });
-  });
-});
+function navTo(h){document.body.classList.add('fade-out');setTimeout(()=>location.href=h,320);}
+document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('a[href]').forEach(a=>{const h=a.getAttribute('href');if(h&&!h.startsWith('http')&&h.endsWith('.html'))a.addEventListener('click',e=>{e.preventDefault();navTo(h);});});});
+window.addEventListener('pageshow',()=>{document.body.style.opacity='0';requestAnimationFrame(()=>requestAnimationFrame(()=>{document.body.style.transition='opacity .4s ease';document.body.style.opacity='1';}));});
 </script>
 </body>
 </html>
