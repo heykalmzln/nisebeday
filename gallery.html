@@ -1,126 +1,294 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<title>Gallery · Anis & Haziquent</title>
-<link rel="stylesheet" href="shared.css">
-<style>
-.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
-@media(max-width:480px){.gallery-grid{grid-template-columns:repeat(2,1fr);gap:8px;}}
-.g-item{
-  position:relative;border-radius:14px;overflow:hidden;
-  aspect-ratio:1;cursor:pointer;
-  background:linear-gradient(135deg,rgba(244,160,176,.18),rgba(232,96,122,.09));
-  border:1px solid rgba(244,160,176,.18);
-  display:flex;align-items:center;justify-content:center;flex-direction:column;
-  opacity:0;transform:scale(.94);
-  transition:opacity .45s ease,transform .45s ease;
-  -webkit-tap-highlight-color:transparent;
-  touch-action:manipulation;
-}
-.g-item.in{opacity:1;transform:scale(1);}
-.g-item:active{transform:scale(.96) !important;}
-.g-item.large{grid-column:span 2;}
-.placeholder{text-align:center;padding:16px;pointer-events:none;}
-.ph-icon{font-size:1.6rem;margin-bottom:6px;opacity:.45;}
-.ph-text{font-size:.65rem;font-weight:500;color:var(--text-mid);opacity:.55;line-height:1.4;}
-.g-caption{
-  position:absolute;bottom:0;left:0;right:0;
-  background:linear-gradient(to top,rgba(61,26,36,.55),transparent);
-  padding:12px 10px 10px;
-  color:#fff;font-size:.72rem;font-weight:500;
-  opacity:0;transition:opacity .2s;
-}
-.g-item:hover .g-caption{opacity:1;}
-/* on touch devices always show caption */
-@media(hover:none){.g-caption{opacity:1;}}
-
-.tip-box{
-  background:rgba(232,96,122,.05);
-  border:1px dashed rgba(232,96,122,.28);
-  border-radius:14px;padding:16px 18px;
-  margin-bottom:28px;
-  font-size:.82rem;color:var(--text-mid);line-height:1.7;
-}
-.tip-box strong{color:var(--pink);}
-code{background:rgba(232,96,122,.08);padding:1px 5px;border-radius:4px;font-size:.76rem;}
-
-/* lightbox */
-#lb{display:none;position:fixed;inset:0;z-index:9999;background:rgba(15,3,8,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);align-items:center;justify-content:center;padding:20px;}
-#lb.open{display:flex;}
-#lb img{max-width:100%;max-height:90svh;border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.5);object-fit:contain;}
-#lb-close{position:absolute;top:max(20px,env(safe-area-inset-top,20px));right:20px;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:1rem;cursor:pointer;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;}
-</style>
-</head>
-<body>
-<nav class="topnav">
-  <a class="nav-brand" href="home.html">Anis & Haziquent 🌸</a>
-  <button class="nav-toggle" id="nt" onclick="toggleMenu()"><span></span><span></span><span></span></button>
-  <ul class="nav-links">
-    <li><a href="home.html">Home</a></li><li><a href="story.html">Our Story</a></li><li><a href="reasons.html">Why I Love You</a></li><li><a href="letter.html">Letter</a></li><li><a href="gallery.html" class="active">Gallery</a></li>
-  </ul>
-</nav>
-<div class="nav-dropdown" id="nd"><ul>
-  <li><a href="home.html">🏠&nbsp; Home</a></li>
-  <li><a href="story.html">📖&nbsp; Our Story</a></li>
-  <li><a href="reasons.html">💗&nbsp; Why I Love You</a></li>
-  <li><a href="letter.html">✉️&nbsp; Birthday Letter</a></li>
-  <li><a href="gallery.html" class="active">🖼️&nbsp; Gallery</a></li>
-</ul></div>
-<nav class="bottom-nav"><ul>
-  <li><a href="home.html"><span class="bn-icon">🏠</span><span class="bn-label">Home</span></a></li>
-  <li><a href="story.html"><span class="bn-icon">📖</span><span class="bn-label">Story</span></a></li>
-  <li><a href="reasons.html"><span class="bn-icon">💗</span><span class="bn-label">Love</span></a></li>
-  <li><a href="letter.html"><span class="bn-icon">✉️</span><span class="bn-label">Letter</span></a></li>
-  <li><a href="gallery.html" class="active"><span class="bn-icon">🖼️</span><span class="bn-label">Gallery</span></a></li>
-</ul></nav>
-
-<div class="page">
-  <div class="section">
-    <div class="section-label reveal">Our Memories</div>
-    <div class="section-title reveal">Gallery</div>
-    <hr class="rule reveal">
-    <div class="tip-box reveal">
-      📸 <strong>How to add photos:</strong> Put your image files in the same folder. Then in each <code>.g-item</code> add <code>style="background-image:url('photo.jpg');background-size:cover;background-position:center"</code> — the placeholder will hide automatically.
-    </div>
-    <div class="gallery-grid">
-      <div class="g-item large"><div class="placeholder"><div class="ph-icon">📷</div><div class="ph-text">Favourite photo<br>(wide)</div></div><div class="g-caption">Add a caption here 🌸</div></div>
-      <div class="g-item"><div class="placeholder"><div class="ph-icon">🌸</div><div class="ph-text">Photo 2</div></div><div class="g-caption">Caption</div></div>
-      <div class="g-item"><div class="placeholder"><div class="ph-icon">💕</div><div class="ph-text">Photo 3</div></div><div class="g-caption">Caption</div></div>
-      <div class="g-item"><div class="placeholder"><div class="ph-icon">🌷</div><div class="ph-text">Photo 4</div></div><div class="g-caption">Caption</div></div>
-      <div class="g-item large"><div class="placeholder"><div class="ph-icon">📷</div><div class="ph-text">Wide photo</div></div><div class="g-caption">Caption</div></div>
-      <div class="g-item"><div class="placeholder"><div class="ph-icon">💞</div><div class="ph-text">Photo 6</div></div><div class="g-caption">Caption</div></div>
-      <div class="g-item"><div class="placeholder"><div class="ph-icon">🩷</div><div class="ph-text">Photo 7</div></div><div class="g-caption">Caption</div></div>
-      <div class="g-item"><div class="placeholder"><div class="ph-icon">✨</div><div class="ph-text">Photo 8</div></div><div class="g-caption">Caption</div></div>
-    </div>
-  </div>
-  <footer><span class="heart">💗</span>Made with love by Haziquent &nbsp;·&nbsp; for Anis Nazirah</footer>
-</div>
-
-<div id="lb"><button id="lb-close" onclick="closeLb()">✕</button><img id="lb-img" src="" alt=""></div>
-
-<script>
-function toggleMenu(){document.getElementById('nt').classList.toggle('open');document.getElementById('nd').classList.toggle('open');}
-document.querySelectorAll('.nav-dropdown a').forEach(a=>a.addEventListener('click',()=>{document.getElementById('nt').classList.remove('open');document.getElementById('nd').classList.remove('open');}));
-const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.06});
-document.querySelectorAll('.reveal,.g-item').forEach((el,i)=>{if(el.classList.contains('g-item'))el.style.transitionDelay=(i*.06)+'s';obs.observe(el);});
-document.querySelectorAll('.g-item').forEach(item=>{
-  item.addEventListener('click',()=>{
-    const bg=item.style.backgroundImage;
-    if(bg&&bg!=='none'){
-      document.getElementById('lb-img').src=bg.replace(/url\(["']?|["']?\)/g,'');
-      document.getElementById('lb').classList.add('open');
-      document.body.style.overflow='hidden';
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Gallery · Anis & Haziquent</title>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
     }
-  });
-});
-function closeLb(){document.getElementById('lb').classList.remove('open');document.getElementById('lb-img').src='';document.body.style.overflow='';}
-document.getElementById('lb').addEventListener('click',e=>{if(e.target===document.getElementById('lb'))closeLb();});
-function navTo(h){document.body.classList.add('fade-out');setTimeout(()=>location.href=h,320);}
-document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('a[href]').forEach(a=>{const h=a.getAttribute('href');if(h&&!h.startsWith('http')&&h.endsWith('.html'))a.addEventListener('click',e=>{e.preventDefault();navTo(h);});});});
-window.addEventListener('pageshow',()=>{document.body.style.opacity='0';requestAnimationFrame(()=>requestAnimationFrame(()=>{document.body.style.transition='opacity .4s ease';document.body.style.opacity='1';}));});
-</script>
+
+    @media(max-width:480px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
+    }
+
+    .g-item {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      aspect-ratio: 1;
+      cursor: pointer;
+      background: linear-gradient(135deg, rgba(244, 160, 176, .18), rgba(232, 96, 122, .09));
+      border: 1px solid rgba(244, 160, 176, .18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      opacity: 0;
+      transform: scale(.94);
+      transition: opacity .45s ease, transform .45s ease;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    .g-item.in {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .g-item:active {
+      transform: scale(.96) !important;
+    }
+
+    .g-item.large {
+      grid-column: span 2;
+    }
+
+    .placeholder {
+      text-align: center;
+      padding: 16px;
+      pointer-events: none;
+    }
+
+    .ph-icon {
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+      opacity: .45;
+    }
+
+    .ph-text {
+      font-size: .65rem;
+      font-weight: 500;
+      color: var(--text-mid);
+      opacity: .55;
+      line-height: 1.4;
+    }
+
+    .g-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(61, 26, 36, .55), transparent);
+      padding: 12px 10px 10px;
+      color: #fff;
+      font-size: .72rem;
+      font-weight: 500;
+      opacity: 0;
+      transition: opacity .2s;
+    }
+
+    .g-item:hover .g-caption {
+      opacity: 1;
+    }
+
+    /* on touch devices always show caption */
+    @media(hover:none) {
+      .g-caption {
+        opacity: 1;
+      }
+    }
+
+    .tip-box {
+      background: rgba(232, 96, 122, .05);
+      border: 1px dashed rgba(232, 96, 122, .28);
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-bottom: 28px;
+      font-size: .82rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+
+    .tip-box strong {
+      color: var(--pink);
+    }
+
+    code {
+      background: rgba(232, 96, 122, .08);
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-size: .76rem;
+    }
+
+    /* lightbox */
+    #lb {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(15, 3, 8, .92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    #lb.open {
+      display: flex;
+    }
+
+    #lb img {
+      max-width: 100%;
+      max-height: 90svh;
+      border-radius: 14px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .5);
+      object-fit: contain;
+    }
+
+    #lb-close {
+      position: absolute;
+      top: max(20px, env(safe-area-inset-top, 20px));
+      right: 20px;
+      background: rgba(255, 255, 255, .15);
+      border: none;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      -webkit-tap-highlight-color: transparent;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="topnav">
+    <a class="nav-brand" href="home.html">Anis & Haziquent 🌸</a>
+    <button class="nav-toggle" id="nt" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+    <ul class="nav-links">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="story.html">Our Story</a></li>
+      <li><a href="reasons.html">Why I Love You</a></li>
+      <li><a href="gallery.html" class="active">Gallery</a></li>
+    </ul>
+  </nav>
+  <div class="nav-dropdown" id="nd">
+    <ul>
+      <li><a href="home.html">🏠&nbsp; Home</a></li>
+      <li><a href="story.html">📖&nbsp; Our Story</a></li>
+      <li><a href="reasons.html">💗&nbsp; Why I Love You</a></li>
+      <li><a href="gallery.html" class="active">🖼️&nbsp; Gallery</a></li>
+    </ul>
+  </div>
+  <nav class="bottom-nav">
+    <ul>
+      <li><a href="home.html"><span class="bn-icon">🏠</span><span class="bn-label">Home</span></a></li>
+      <li><a href="story.html"><span class="bn-icon">📖</span><span class="bn-label">Story</span></a></li>
+      <li><a href="reasons.html"><span class="bn-icon">💗</span><span class="bn-label">Love</span></a></li>
+      <li><a href="gallery.html" class="active"><span class="bn-icon">🖼️</span><span
+            class="bn-label">Gallery</span></a></li>
+    </ul>
+  </nav>
+
+  <div class="page">
+    <div class="section">
+      <div class="section-label reveal">Our Memories</div>
+      <div class="section-title reveal">Gallery</div>
+      <hr class="rule reveal">
+
+      <div class="gallery-grid">
+        <div class="g-item large"
+          style="background-image:url('preconvo.jpg');background-size:cover;background-position:center">
+          <div class="placeholder">
+
+          </div>
+          <div class="g-caption">Add a caption here 🌸</div>
+        </div>
+        <div class="g-item" style="background-image:url('drive.jpg');background-size:cover;background-position:center">
+
+          <div class="placeholder">
+            <div class="ph-text">Photo 2</div>
+          </div>
+          <div class="g-caption">Caption</div>
+        </div>
+        <div class="g-item"
+          style="background-image:url('library.jpg');background-size:cover;background-position:center">
+          <div class="placeholder">
+            <div class="ph-icon">💕</div>
+            <div class="ph-text">Photo 3</div>
+          </div>
+          <div class="g-caption">Caption</div>
+        </div>
+        <div class="g-item">
+          <div class="placeholder">
+            <div class="ph-icon">🌷</div>
+            <div class="ph-text">Photo 4</div>
+          </div>
+          <div class="g-caption">Caption</div>
+        </div>
+        <div class="g-item large"
+          style="background-image:url('kpi.jpg');background-size:cover;background-position:center">
+          >
+          <div class="placeholder">
+            <div class="ph-icon">📷</div>
+            <div class="ph-text">Wide photo</div>
+          </div>
+          <div class="g-caption">Caption</div>
+        </div>
+        <div class="g-item">
+          <div class="placeholder">
+            <div class="ph-icon">💞</div>
+            <div class="ph-text">Photo 6</div>
+          </div>
+          <div class="g-caption">Caption</div>
+        </div>
+        <div class="g-item">
+          <div class="placeholder">
+            <div class="ph-icon">🩷</div>
+            <div class="ph-text">Photo 7</div>
+          </div>
+          <div class="g-caption">Caption</div>
+        </div>
+        <div class="g-item">
+          <div class="placeholder">
+            <div class="ph-icon">✨</div>
+            <div class="ph-text">Photo 8</div>
+          </div>
+          <div class="g-caption">Caption</div>
+        </div>
+      </div>
+    </div>
+    <footer><span class="heart">💗</span>Made with love by Haziquent &nbsp;·&nbsp; for Anis Nazirah</footer>
+  </div>
+
+  <div id="lb"><button id="lb-close" onclick="closeLb()">✕</button><img id="lb-img" src="" alt=""></div>
+
+  <script>
+    function toggleMenu() { document.getElementById('nt').classList.toggle('open'); document.getElementById('nd').classList.toggle('open'); }
+    document.querySelectorAll('.nav-dropdown a').forEach(a => a.addEventListener('click', () => { document.getElementById('nt').classList.remove('open'); document.getElementById('nd').classList.remove('open'); }));
+    const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }), { threshold: .06 });
+    document.querySelectorAll('.reveal,.g-item').forEach((el, i) => { if (el.classList.contains('g-item')) el.style.transitionDelay = (i * .06) + 's'; obs.observe(el); });
+    document.querySelectorAll('.g-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const bg = item.style.backgroundImage;
+        if (bg && bg !== 'none') {
+          document.getElementById('lb-img').src = bg.replace(/url\(["']?|["']?\)/g, '');
+          document.getElementById('lb').classList.add('open');
+          document.body.style.overflow = 'hidden';
+        }
+      });
+    });
+    function closeLb() { document.getElementById('lb').classList.remove('open'); document.getElementById('lb-img').src = ''; document.body.style.overflow = ''; }
+    document.getElementById('lb').addEventListener('click', e => { if (e.target === document.getElementById('lb')) closeLb(); });
+    function navTo(h) { document.body.classList.add('fade-out'); setTimeout(() => location.href = h, 320); }
+    document.addEventListener('DOMContentLoaded', () => { document.querySelectorAll('a[href]').forEach(a => { const h = a.getAttribute('href'); if (h && !h.startsWith('http') && h.endsWith('.html')) a.addEventListener('click', e => { e.preventDefault(); navTo(h); }); }); });
+    window.addEventListener('pageshow', () => { document.body.style.opacity = '0'; requestAnimationFrame(() => requestAnimationFrame(() => { document.body.style.transition = 'opacity .4s ease'; document.body.style.opacity = '1'; })); });
+  </script>
 </body>
+
 </html>

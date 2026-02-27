@@ -1,70 +1,517 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<title>Our Story · Anis & Haziquent</title>
-<link rel="stylesheet" href="shared.css">
-<style>
-.timeline{position:relative;padding-left:32px;max-width:660px;margin:0 auto;}
-.timeline::before{content:'';position:absolute;left:9px;top:0;bottom:0;width:1.5px;background:linear-gradient(to bottom,var(--pink),var(--pink-mid),rgba(244,160,176,0));}
-.t-item{position:relative;margin-bottom:36px;opacity:0;transform:translateX(-16px);transition:opacity .5s ease,transform .5s ease;}
-.t-item.in{opacity:1;transform:translateX(0);}
-.t-item:nth-child(1){transition-delay:0s}.t-item:nth-child(2){transition-delay:.1s}.t-item:nth-child(3){transition-delay:.2s}.t-item:nth-child(4){transition-delay:.3s}.t-item:nth-child(5){transition-delay:.4s}
-.t-dot{position:absolute;left:-27px;top:16px;width:11px;height:11px;border-radius:50%;background:var(--pink);border:2.5px solid var(--pink-pale);box-shadow:0 0 0 4px rgba(232,96,122,.14);}
-.t-date{font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--pink);margin-bottom:8px;}
-.t-card{background:#fff;border:1px solid rgba(244,160,176,.2);border-radius:16px;padding:20px 22px;box-shadow:0 2px 12px rgba(232,96,122,.05);}
-.t-card h3{font-size:1rem;font-weight:600;color:var(--text);margin-bottom:6px;letter-spacing:-.01em;}
-.t-card p{font-size:.92rem;color:var(--text-mid);line-height:1.75;font-weight:300;}
-</style>
-</head>
-<body>
-<nav class="topnav">
-  <a class="nav-brand" href="home.html">Anis & Haziquent 🌸</a>
-  <button class="nav-toggle" id="nt" onclick="toggleMenu()"><span></span><span></span><span></span></button>
-  <ul class="nav-links">
-    <li><a href="home.html">Home</a></li><li><a href="story.html" class="active">Our Story</a></li><li><a href="reasons.html">Why I Love You</a></li><li><a href="letter.html">Letter</a></li><li><a href="gallery.html">Gallery</a></li>
-  </ul>
-</nav>
-<div class="nav-dropdown" id="nd"><ul>
-  <li><a href="home.html">🏠&nbsp; Home</a></li>
-  <li><a href="story.html" class="active">📖&nbsp; Our Story</a></li>
-  <li><a href="reasons.html">💗&nbsp; Why I Love You</a></li>
-  <li><a href="letter.html">✉️&nbsp; Birthday Letter</a></li>
-  <li><a href="gallery.html">🖼️&nbsp; Gallery</a></li>
-</ul></div>
-<nav class="bottom-nav"><ul>
-  <li><a href="home.html"><span class="bn-icon">🏠</span><span class="bn-label">Home</span></a></li>
-  <li><a href="story.html" class="active"><span class="bn-icon">📖</span><span class="bn-label">Story</span></a></li>
-  <li><a href="reasons.html"><span class="bn-icon">💗</span><span class="bn-label">Love</span></a></li>
-  <li><a href="letter.html"><span class="bn-icon">✉️</span><span class="bn-label">Letter</span></a></li>
-  <li><a href="gallery.html"><span class="bn-icon">🖼️</span><span class="bn-label">Gallery</span></a></li>
-</ul></nav>
 
-<div class="page">
-  <div class="section">
-    <div class="section-label reveal">Chapter One</div>
-    <div class="section-title reveal">Our Story</div>
-    <hr class="rule reveal">
-    <div class="timeline">
-      <div class="t-item"><div class="t-dot"></div><div class="t-date">November 2023</div><div class="t-card"><h3>The Beginning 🌸</h3><p>We met at Machang — I looked up into you, and something in me knew. That moment started everything.</p></div></div>
-      <div class="t-item"><div class="t-dot"></div><div class="t-date">23 · 11 · 2023</div><div class="t-card"><h3>We Became Us 💕</h3><p>The day we made it official. The day I got to call you mine. One of the best days of my life.</p></div></div>
-      <div class="t-item"><div class="t-dot"></div><div class="t-date">[Edit: add date]</div><div class="t-card"><h3>[Edit: Add a milestone] 🌷</h3><p>[Edit this — add your favourite memory together. A trip, a moment, a late-night conversation. Make it yours.]</p></div></div>
-      <div class="t-item"><div class="t-dot"></div><div class="t-date">[Edit: add date]</div><div class="t-card"><h3>[Edit: Another memory] ✨</h3><p>[Edit this — another moment you want to remember forever. Big or small — every moment counts.]</p></div></div>
-      <div class="t-item"><div class="t-dot"></div><div class="t-date">Today & Always</div><div class="t-card"><h3>Forever & More 💞</h3><p>[Edit this — write about what you're looking forward to together. Your future. Dreams. Plans. Anything.]</p></div></div>
-    </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Our Story · Anis & Haziquent</title>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .timeline {
+      position: relative;
+      padding-left: 32px;
+      max-width: 660px;
+      margin: 0 auto;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 9px;
+      top: 0;
+      bottom: 0;
+      width: 1.5px;
+      background: linear-gradient(to bottom, var(--pink), var(--pink-mid), rgba(244, 160, 176, 0));
+    }
+
+    .t-item {
+      position: relative;
+      margin-bottom: 36px;
+      opacity: 0;
+      transform: translateX(-16px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+
+    .t-item.in {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .t-item:nth-child(1) {
+      transition-delay: 0s
+    }
+
+    .t-item:nth-child(2) {
+      transition-delay: .1s
+    }
+
+    .t-item:nth-child(3) {
+      transition-delay: .2s
+    }
+
+    .t-item:nth-child(4) {
+      transition-delay: .3s
+    }
+
+    .t-item:nth-child(5) {
+      transition-delay: .4s
+    }
+
+    .t-dot {
+      position: absolute;
+      left: -27px;
+      top: 16px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--pink);
+      border: 2.5px solid var(--pink-pale);
+      box-shadow: 0 0 0 4px rgba(232, 96, 122, .14);
+    }
+
+    .t-date {
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 8px;
+    }
+
+    .t-card {
+      background: #fff;
+      border: 1px solid rgba(244, 160, 176, .2);
+      border-radius: 16px;
+      padding: 20px 22px;
+      box-shadow: 0 2px 12px rgba(232, 96, 122, .05);
+    }
+
+    .t-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+      letter-spacing: -.01em;
+    }
+
+    .t-card p {
+      font-size: .92rem;
+      color: var(--text-mid);
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    /* ══════════════════════════════
+       MUSIC PLAYER BUTTON
+    ══════════════════════════════ */
+    #music-btn {
+      position: fixed;
+      bottom: calc(env(safe-area-inset-bottom) + 72px);
+      /* above bottom nav */
+      right: 20px;
+      z-index: 9999;
+
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+
+      background: linear-gradient(135deg, #f4a0b0, #e8607a);
+      box-shadow: 0 4px 20px rgba(232, 96, 122, .45);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.45rem;
+
+      transition: transform .2s cubic-bezier(.34, 1.56, .64, 1), box-shadow .2s;
+    }
+
+    #music-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 28px rgba(232, 96, 122, .55);
+    }
+
+    #music-btn:active {
+      transform: scale(.92);
+    }
+
+    /* spinning vinyl ring when playing */
+    #music-btn::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px dashed rgba(255, 255, 255, .55);
+      animation: spin 4s linear infinite;
+      opacity: 0;
+      transition: opacity .4s;
+    }
+
+    #music-btn.playing::before {
+      opacity: 1;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* pulse ring when playing */
+    #music-btn.playing::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: rgba(232, 96, 122, .3);
+      animation: musicPulse 1.8s ease-in-out infinite;
+    }
+
+    @keyframes musicPulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: .6;
+      }
+
+      50% {
+        transform: scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    /* tooltip */
+    #music-btn .music-tip {
+      position: absolute;
+      right: calc(100% + 10px);
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(50, 20, 30, .75);
+      color: #fff;
+      font-size: .7rem;
+      white-space: nowrap;
+      padding: 5px 10px;
+      border-radius: 20px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .3s;
+      letter-spacing: .05em;
+    }
+
+    #music-btn:hover .music-tip {
+      opacity: 1;
+    }
+
+    /* music note particles */
+    .note {
+      position: fixed;
+      font-size: 1.1rem;
+      pointer-events: none;
+      z-index: 9998;
+      animation: noteFloat 2s ease-out forwards;
+      opacity: 0;
+    }
+
+    @keyframes noteFloat {
+      0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(0.6) rotate(-10deg);
+      }
+
+      100% {
+        opacity: 0;
+        transform: translate(var(--nx), var(--ny)) scale(1.2) rotate(20deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══ BACKGROUND MUSIC ══ -->
+  <!--
+    HOW TO ADD YOUR OWN SONG:
+    1. Place your .mp3 file in the same folder as this HTML file
+    2. Change the src below to your filename, e.g. src="song.mp3"
+    3. Or use a hosted URL: src="https://example.com/song.mp3"
+  -->
+  <audio id="bg-music" loop preload="none">
+    <source src="music.mp3" type="audio/mpeg">
+    <!-- fallback: you can also add an ogg version -->
+  </audio>
+
+  <!-- MUSIC TOGGLE BUTTON -->
+  <button id="music-btn" aria-label="Toggle music">
+    <span id="music-icon">🎵</span>
+    <span class="music-tip" id="music-tip">Play music</span>
+  </button>
+
+  <nav class="topnav">
+    <a class="nav-brand" href="home.html">Anis & Haziquent 🌸</a>
+    <button class="nav-toggle" id="nt" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+    <ul class="nav-links">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="story.html" class="active">Our Story</a></li>
+      <li><a href="reasons.html">Why I Love You</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+    </ul>
+  </nav>
+  <div class="nav-dropdown" id="nd">
+    <ul>
+      <li><a href="home.html">🏠&nbsp; Home</a></li>
+      <li><a href="story.html" class="active">📖&nbsp; Our Story</a></li>
+      <li><a href="reasons.html">💗&nbsp; Why I Love You</a></li>
+      <li><a href="gallery.html">🖼️&nbsp; Gallery</a></li>
+    </ul>
   </div>
-  <footer><span class="heart">💗</span>Made with love by Haziquent &nbsp;·&nbsp; for Anis Nazirah</footer>
-</div>
-<script>
-function toggleMenu(){document.getElementById('nt').classList.toggle('open');document.getElementById('nd').classList.toggle('open');}
-document.querySelectorAll('.nav-dropdown a').forEach(a=>a.addEventListener('click',()=>{document.getElementById('nt').classList.remove('open');document.getElementById('nd').classList.remove('open');}));
-const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.1});
-document.querySelectorAll('.reveal,.t-item').forEach(el=>obs.observe(el));
-function navTo(h){document.body.classList.add('fade-out');setTimeout(()=>location.href=h,320);}
-document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('a[href]').forEach(a=>{const h=a.getAttribute('href');if(h&&!h.startsWith('http')&&h.endsWith('.html'))a.addEventListener('click',e=>{e.preventDefault();navTo(h);});});});
-window.addEventListener('pageshow',()=>{document.body.style.opacity='0';requestAnimationFrame(()=>requestAnimationFrame(()=>{document.body.style.transition='opacity .4s ease';document.body.style.opacity='1';}));});
-</script>
+  <nav class="bottom-nav">
+    <ul>
+      <li><a href="home.html"><span class="bn-icon">🏠</span><span class="bn-label">Home</span></a></li>
+      <li><a href="story.html" class="active"><span class="bn-icon">📖</span><span class="bn-label">Story</span></a>
+      </li>
+      <li><a href="reasons.html"><span class="bn-icon">💗</span><span class="bn-label">Love</span></a></li>
+      <li><a href="gallery.html"><span class="bn-icon">🖼️</span><span class="bn-label">Gallery</span></a></li>
+    </ul>
+  </nav>
+
+  <div class="page">
+    <div class="section">
+      <div class="section-label reveal">Chapter One</div>
+      <div class="section-title reveal">Our Story</div>
+      <hr class="rule reveal">
+      <div class="timeline">
+
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <div class="t-date">November 2022</div>
+          <div class="t-card">
+            <h3>The Beginning 🌸</h3>
+            <p>One day, Twitter whispered a notification:
+              "Anis Latif requested to follow you."
+
+              Curious, I wandered through her feed, piecing together fragments of who she was — and somehow, she felt
+              familiar.
+
+              Then I realized why.
+              We were both from UiTM Machang, walking the same campus without ever meeting.
+
+              It all began with a simple message:
+
+              "Assalamualaikum, awak Machangster ke?"
+
+              Sometimes, the smallest greetings start the biggest stories</p>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <div class="t-date">November 2022</div>
+          <div class="t-card">
+            <h3>We Became Us 💕</h3>
+            <p>After countless conversations and a chemistry neither of us could deny, one heart finally gathered the
+              courage to confess — I won't say whose.
+
+              The other replied softly,
+              "Let me focus on my future first… and if we're meant to be, let time find us."
+
+              It sounded simple. Wise, even.
+              But feelings are never as patient as words.
+
+              Time passed. Emotions stayed.
+              And somewhere between ambition and longing, we found our way back to each other.
+
+              Now, we're no longer just two people crossing paths —
+              we're building something together.</p>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <div class="t-date">July 2023</div>
+          <div class="t-card">
+            <h3>First Date 🌷</h3>
+            <p>Our first outing was at Bukit Kluang, by the beach.
+
+              The waves moved gently, as if they understood the quiet between us. The wind carried the scent of salt and
+              something new — something that felt like a beginning.
+
+              We walked along the shore, not too close, not too far — just enough to feel the presence of each other.
+              The sea stretched endlessly before us, and for a moment, the future didn't feel so uncertain anymore.
+
+              Bukit Kluang wasn't just a beach that day.
+              It became the place where hesitation faded,
+              where shy smiles turned into shared laughter,
+              and where "maybe someday" slowly became "us."</p>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <div class="t-date">September 2023</div>
+          <div class="t-card">
+            <h3>Between Waves and Miles</h3>
+            <p>Then life tested them.
+
+              The man left for his internship, chasing his future.
+              The woman stayed where their love first began.
+
+              Distance wasn't easy.
+              Bukit Kluang turned into late-night calls and quiet "I miss you's."
+              Misunderstandings grew heavier across miles.
+
+              Conflicts came — but so did maturity.
+
+              They chose to communicate, to understand, to hold on.
+
+              Because sometimes love isn't about staying close —
+              it's about staying committed, even from afar.</p>
+          </div>
+        </div>
+
+        <div class="t-item">
+          <div class="t-dot"></div>
+          <div class="t-date">Today & Always</div>
+          <div class="t-card">
+            <h3>Still Choosing You</h3>
+            <p>Four years later, the conversations feel different.
+
+              They are no longer asking what are we, but when is our time.
+
+              They talk about savings, careers, and introducing families properly. About choosing the right moment,
+              preparing themselves, and building a stable life before stepping into marriage.
+
+              What once started with shy messages and quiet walks by the sea has now grown into serious plans about
+              commitment and forever.
+
+              From let time find us to let us build our future.
+
+              This time, they are not leaving it to fate.
+              They are preparing for a lifetime together.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <footer><span class="heart">💗</span>Made with love by Haziquent &nbsp;·&nbsp; for Anis Nazirah</footer>
+  </div>
+
+  <script>
+    /* ══════════════════════════════
+       MUSIC TOGGLE
+    ══════════════════════════════ */
+    (function () {
+      const audio = document.getElementById('bg-music');
+      const btn = document.getElementById('music-btn');
+      const icon = document.getElementById('music-icon');
+      const tip = document.getElementById('music-tip');
+      let playing = false;
+
+      // Smoothly fade volume in/out
+      function fadeIn() {
+        audio.volume = 0;
+        audio.play().catch(() => { }); // catch autoplay block
+        let v = 0;
+        const t = setInterval(() => {
+          v = Math.min(v + 0.05, 0.7);
+          audio.volume = v;
+          if (v >= 0.7) clearInterval(t);
+        }, 80);
+      }
+
+      function fadeOut() {
+        let v = audio.volume;
+        const t = setInterval(() => {
+          v = Math.max(v - 0.05, 0);
+          audio.volume = v;
+          if (v <= 0) { clearInterval(t); audio.pause(); }
+        }, 80);
+      }
+
+      // Spawn floating music notes from button position
+      function spawnNotes() {
+        const notes = ['🎵', '🎶', '🎼', '♪', '♫'];
+        const rect = btn.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+
+        for (let i = 0; i < 5; i++) {
+          setTimeout(() => {
+            const el = document.createElement('div');
+            el.className = 'note';
+            el.textContent = notes[Math.floor(Math.random() * notes.length)];
+            const nx = (Math.random() - 0.5) * 100 + 'px';
+            const ny = -(40 + Math.random() * 80) + 'px';
+            el.style.cssText = `left:${cx}px;top:${cy}px;--nx:${nx};--ny:${ny};animation-delay:${i * 0.1}s`;
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), 2200);
+          }, i * 80);
+        }
+      }
+
+      btn.addEventListener('click', () => {
+        playing = !playing;
+
+        if (playing) {
+          fadeIn();
+          btn.classList.add('playing');
+          icon.textContent = '🔊';
+          tip.textContent = 'Pause music';
+          spawnNotes();
+        } else {
+          fadeOut();
+          btn.classList.remove('playing');
+          icon.textContent = '🎵';
+          tip.textContent = 'Play music';
+        }
+      });
+
+      // Resume/pause awareness (e.g. tab switching)
+      audio.addEventListener('pause', () => {
+        if (playing) { playing = false; btn.classList.remove('playing'); icon.textContent = '🎵'; tip.textContent = 'Play music'; }
+      });
+    })();
+
+    /* ══════════════════════════════
+       NAV + TRANSITIONS (unchanged)
+    ══════════════════════════════ */
+    function toggleMenu() {
+      document.getElementById('nt').classList.toggle('open');
+      document.getElementById('nd').classList.toggle('open');
+    }
+    document.querySelectorAll('.nav-dropdown a').forEach(a =>
+      a.addEventListener('click', () => {
+        document.getElementById('nt').classList.remove('open');
+        document.getElementById('nd').classList.remove('open');
+      })
+    );
+    const obs = new IntersectionObserver(
+      es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }),
+      { threshold: .1 }
+    );
+    document.querySelectorAll('.reveal,.t-item').forEach(el => obs.observe(el));
+
+    function navTo(h) { document.body.classList.add('fade-out'); setTimeout(() => location.href = h, 320); }
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('a[href]').forEach(a => {
+        const h = a.getAttribute('href');
+        if (h && !h.startsWith('http') && h.endsWith('.html'))
+          a.addEventListener('click', e => { e.preventDefault(); navTo(h); });
+      });
+    });
+    window.addEventListener('pageshow', () => {
+      document.body.style.opacity = '0';
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        document.body.style.transition = 'opacity .4s ease';
+        document.body.style.opacity = '1';
+      }));
+    });
+  </script>
 </body>
+
 </html>
